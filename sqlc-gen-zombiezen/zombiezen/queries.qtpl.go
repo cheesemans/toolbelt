@@ -404,7 +404,7 @@ func (ps *`)
 //line queries.qtpl:135
 					streamfillResponse(qw422016, q)
 //line queries.qtpl:135
-					qw422016.N().S(`            res = &row
+					qw422016.N().S(`            res = row
 `)
 //line queries.qtpl:137
 				}
@@ -666,7 +666,7 @@ func streamfillResponse(qw422016 *qt422016.Writer, q *GenerateQueryContext) {
 //line queries.qtpl:220
 		} else {
 //line queries.qtpl:220
-			qw422016.N().S(`    row := `)
+			qw422016.N().S(`    row := &`)
 //line queries.qtpl:221
 			qw422016.E().S(q.Name.Pascal)
 //line queries.qtpl:221
@@ -984,7 +984,7 @@ func streamfillReturns(qw422016 *qt422016.Writer, q *GenerateQueryContext) {
 //line queries.qtpl:284
 				if q.ResponseHasMultiple {
 //line queries.qtpl:284
-					qw422016.N().S(`[]`)
+					qw422016.N().S(`[]*`)
 //line queries.qtpl:284
 				} else {
 //line queries.qtpl:284

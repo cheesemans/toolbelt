@@ -133,7 +133,7 @@ func (ps *{%s q.Name.Pascal %}Stmt) Run(
             res = row
             {%- else -%}
             {%= fillResponse(q) -%}
-            res = &row
+            res = row
             {%- endif -%}
             {%- endif -%}
         }
@@ -218,7 +218,7 @@ func Once{%s q.Name.Pascal %}(
         {%- endif -%}
     {%- endfor -%}
     {%- else -%}
-    row := {%s q.Name.Pascal %}Res{}
+    row := &{%s q.Name.Pascal %}Res{}
     {%- for _,f := range q.ResponseFields -%}
         {%- if f.GoType.Original == "time.Duration" && f.DurationFromText -%}
     {
@@ -281,7 +281,7 @@ func Once{%s q.Name.Pascal %}(
         {%- if q.ResponseHasModel -%}
         res {% if q.ResponseHasMultiple %}[]*{% else %}*{% endif %}{%s q.ResponseModelName.Pascal %}Model,
         {%- else -%}
-        res {% if q.ResponseHasMultiple %}[]{% else %}*{% endif %}{%s q.Name.Pascal %}Res,
+        res {% if q.ResponseHasMultiple %}[]*{% else %}*{% endif %}{%s q.Name.Pascal %}Res,
         {%- endif -%}
     {%- endif -%}
 {%- endif -%}
